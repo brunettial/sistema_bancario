@@ -153,7 +153,7 @@ def main():
             break
 
         else:
-            print("Operação inválida, por favor selecione novamente a operação desejada.")
+            print("\033[31mOperação inválida, por favor selecione novamente a operação desejada.\033[m")
 
 
 main()

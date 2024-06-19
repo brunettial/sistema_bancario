@@ -1,7 +1,7 @@
 import textwrap
 
 def menu():
-    menu = """\033[33m\n
+    menu = """\n
     ================ MENU ================
     [d]\tDepositar
     [s]\tSacar
@@ -9,8 +9,8 @@ def menu():
     [nc]\tNova conta
     [lc]\tListar contas
     [nu]\tNovo usuário
-    [q]\t\tSair
-    => \033[m"""
+    [q]\tSair
+    => """
     return input(textwrap.dedent(menu))
 
 
@@ -20,7 +20,7 @@ def depositar(saldo, valor, extrato, /):
         extrato += f"Depósito:\tR$ {valor:.2f}\n"
         print("\n=== Depósito realizado com sucesso! ===")
     else:
-        print("\033[31m\n@@@ Operação falhou! O valor informado é inválido. @@@\033[m")
+        print("\n@@@ Operação falhou! O valor informado é inválido. @@@")
 
     return saldo, extrato
 
@@ -31,13 +31,13 @@ def sacar(*, saldo, valor, extrato, limite, numero_saques, limite_saques):
     excedeu_saques = numero_saques >= limite_saques
 
     if excedeu_saldo:
-        print("\033[31m\n@@@ Operação falhou! Você não tem saldo suficiente. @@@\033[m")
+        print("\n@@@ Operação falhou! Você não tem saldo suficiente. @@@")
 
     elif excedeu_limite:
-        print("\033[31m\n@@@ Operação falhou! O valor do saque excede o limite. @@@\033[m")
+        print("\n@@@ Operação falhou! O valor do saque excede o limite. @@@")
 
     elif excedeu_saques:
-        print("\033[31m\n@@@ Operação falhou! Número máximo de saques excedido. @@@\033[m")
+        print("\n@@@ Operação falhou! Número máximo de saques excedido. @@@")
 
     elif valor > 0:
         saldo -= valor
@@ -63,7 +63,7 @@ def criar_usuario(usuarios):
     usuario = filtrar_usuario(cpf, usuarios)
 
     if usuario:
-        print("\033[31m\n@@@ Já existe usuário com esse CPF! @@@\033[m")
+        print("\n@@@ Já existe usuário com esse CPF! @@@")
         return
 
     nome = input("Informe o nome completo: ")
@@ -72,7 +72,7 @@ def criar_usuario(usuarios):
 
     usuarios.append({"nome": nome, "data_nascimento": data_nascimento, "cpf": cpf, "endereco": endereco})
 
-    print("\033[32m=== Usuário criado com sucesso! ===\033[m")
+    print("=== Usuário criado com sucesso! ===")
 
 
 def filtrar_usuario(cpf, usuarios):
@@ -88,7 +88,7 @@ def criar_conta(agencia, numero_conta, usuarios):
         print("\n=== Conta criada com sucesso! ===")
         return {"agencia": agencia, "numero_conta": numero_conta, "usuario": usuario}
 
-    print("\033[31m\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@\033[m")
+    print("\n@@@ Usuário não encontrado, fluxo de criação de conta encerrado! @@@")
 
 
 def listar_contas(contas):
@@ -153,7 +153,7 @@ def main():
             break
 
         else:
-            print("\033[31mOperação inválida, por favor selecione novamente a operação desejada.\033[m")
+            print("Operação inválida, por favor selecione novamente a operação desejada.")
 
 
 main()

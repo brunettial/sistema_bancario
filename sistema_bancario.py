@@ -1,4 +1,4 @@
-menu = """
+menu = """\033[33m
 ==================== Menu =====================
 
 -Escolha uma opção:
@@ -8,7 +8,7 @@ menu = """
 [3] Extrato
 [4] Sair
 
-================================================
+================================================\033[m
 """
 
 saldo = 1470.00 
@@ -31,7 +31,7 @@ while True:
             saldo += valor
             extrato += f"Depósito: R$ {valor:.2f}\n"
         else:
-            print("Erro na operação! O valor informado é invalido!")
+            print("\033[31mErro na operação! O valor informado é invalido!\033[33m")
 
     elif opcao == "2":
         print("Saque")
@@ -45,13 +45,13 @@ while True:
         excedeu_saques = numero_saques >= LIMITE_SAQUES
 
         if excedeu_saldo:
-            print("Operação inválida! Você não possui saldo suficiente.")
+            print("\033[31mOperação inválida! Você não possui saldo suficiente.\033[m")
 
         elif excedeu_limite:
-            print("Operação inválida! O valor de saque excedeu o limite.")
+            print("\033[31mOperação inválida! O valor de saque excedeu o limite.\033[m")
         
         elif excedeu_saques:
-            print("Operação inválida! Limite máximo de saque excedido.")
+            print("\033[31mOperação inválida! Limite máximo de saque excedido.\033[m")
         
         elif valor > 0:
             saldo -= valor
@@ -59,7 +59,7 @@ while True:
             numero_saques += 1
         
         else:
-            print("Erro na operação! O valor informado é invalido.")
+            print("\033[31mErro na operação! O valor informado é invalido.\033[m")
 
 
     elif opcao == "3":
@@ -69,9 +69,9 @@ while True:
         print("======================================")
 
     elif opcao == "4":
-        print("Agradecemos a preferencia, tenha um bom dia!")
+        print("\033[32mAgradecemos a preferencia, tenha um bom dia!\033[m")
         break
 
     else:
-        print("Operação inválida, por favor selecione novamente a operação desejada")
+        print("\033[31mOperação inválida, por favor selecione novamente a operação desejada\033[m")
     
